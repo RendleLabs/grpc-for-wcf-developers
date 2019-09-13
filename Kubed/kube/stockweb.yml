@@ -26,6 +26,8 @@ spec:
         env:
         - name: StockService__Address
           value: "http://stockservice"
+        - name: DOTNET_SYSTEM_NET_HTTP_SOCKETSHTTPHANDLER_HTTP2UNENCRYPTEDSUPPORT
+          value: "true"
         - name: ASPNETCORE_ENVIRONMENT
           value: Development
 
