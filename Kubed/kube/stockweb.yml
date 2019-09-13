@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stockweb
+  namespace: stocks
+spec:
+  selector:
+    matchLabels:
+      run: stockweb
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: stockweb
+    spec:
+      containers:
+      - name: stockweb
+        image: stockweb:1.0.0
+        imagePullPolicy: Never
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 80
+        env:
+        - name: StockService__Address
+          value: "http://stockservice"
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: stockweb
+  namespace: stocks
+  labels:
+    run: stockweb
+spec:
+  type: NodePort 
+  ports:
+  - port: 80
+  selector:
+    run: stockweb

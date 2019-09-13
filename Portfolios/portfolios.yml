@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: portfolio-test
+spec:
+  containers:
+  - name: local-portfolios
+    image: portfolios:0.1
+    imagePullPolicy: Never

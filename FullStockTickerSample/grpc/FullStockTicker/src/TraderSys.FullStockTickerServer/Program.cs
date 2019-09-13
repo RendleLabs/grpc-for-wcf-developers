@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Server.Kestrel.Https;
 using Microsoft.Extensions.Hosting;
 
 namespace TraderSys.FullStockTickerServer
@@ -21,7 +22,15 @@ namespace TraderSys.FullStockTickerServer
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                        .ConfigureKestrel(options =>
+                        {
+                            options.ConfigureHttpsDefaults(options =>
+                            {
+                                options.ServerCertificate = DevelopmentModeCertificateHelper.Certificate;
+                                options.ClientCertificateMode = ClientCertificateMode.RequireCertificate;
+                            });
+                        });
                 });
     }
 }

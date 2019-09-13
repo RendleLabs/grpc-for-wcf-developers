@@ -38,9 +38,8 @@ namespace TraderSys.FullStockTickerServer.Services
 
         private async Task HandleActions(IAsyncStreamReader<ActionMessage> requestStream, IFullStockPriceSubscriber subscriber, CancellationToken token)
         {
-            while (await requestStream.MoveNext(token))
+            await foreach(var action in requestStream.ReadAllAsync(token))
             {
-                var action = requestStream.Current;
                 switch (action.ActionCase)
                 {
                     case ActionMessage.ActionOneofCase.None:

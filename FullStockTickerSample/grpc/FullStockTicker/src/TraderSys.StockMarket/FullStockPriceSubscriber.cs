@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TraderSys.StockMarket
 {
-    public class FullStockPriceSubscriber : IDisposable, IFullStockPriceSubscriber
+    public class FullStockPriceSubscriber : IFullStockPriceSubscriber
     {
         private readonly HashSet<StockPrice> _prices = new HashSet<StockPrice>();
         private readonly CancellationTokenSource _cancellationTokenSource;
@@ -24,7 +24,9 @@ namespace TraderSys.StockMarket
 
         public void Add(string symbol)
         {
-            _prices.Add(new StockPrice(symbol, _random.Next(99999) / 10m));
+            var price = new StockPrice(symbol, _random.Next(99999) / 10m);
+            _prices.Add(price);
+            Update?.Invoke(this, new StockPriceUpdateEventArgs(price.Symbol, price.Price));
         }
 
         public void Remove(string symbol)
@@ -59,8 +61,7 @@ namespace TraderSys.StockMarket
         public void Dispose()
         {
             _cancellationTokenSource.Cancel();
+            _task.Dispose();
         }
     }
-
-
 }
