@@ -8,10 +8,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using StockService.Data;
-//using StockService.Services;
+using StockData.Data;
+//using StockData.Services;
 
-namespace StockService
+namespace StockData
 {
     public class Startup
     {
@@ -33,7 +33,7 @@ namespace StockService
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<Services.StockService>();
+                endpoints.MapGrpcService<Services.StockData>();
 
                 endpoints.MapGet("/", async context =>
                 {

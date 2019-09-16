@@ -24,12 +24,10 @@ spec:
         ports:
         - containerPort: 80
         env:
-        - name: StockService__Address
-          value: "http://stockservice"
+        - name: StockData__Address
+          value: "http://stockdata"
         - name: DOTNET_SYSTEM_NET_HTTP_SOCKETSHTTPHANDLER_HTTP2UNENCRYPTEDSUPPORT
           value: "true"
-        - name: ASPNETCORE_ENVIRONMENT
-          value: Development
 
 ---
 
@@ -38,8 +36,6 @@ kind: Service
 metadata:
   name: stockweb
   namespace: stocks
-  labels:
-    run: stockweb
 spec:
   type: NodePort 
   ports:

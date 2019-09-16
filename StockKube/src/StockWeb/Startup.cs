@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using StockService.Protos;
+using StockData.Protos;
 using StockWeb.Settings;
 
 namespace StockWeb
@@ -22,11 +22,11 @@ namespace StockWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.Configure<StockServiceSettings>(Configuration.GetSection("StockService"));
+            services.Configure<StockDataSettings>(Configuration.GetSection("StockData"));
 
             services.AddGrpcClient<Stocks.StocksClient>((provider, options) =>
                 {
-                    var settings = provider.GetRequiredService<IOptionsMonitor<StockServiceSettings>>();
+                    var settings = provider.GetRequiredService<IOptionsMonitor<StockDataSettings>>();
                     options.Address = new Uri(settings.CurrentValue.Address);
                 });
         }

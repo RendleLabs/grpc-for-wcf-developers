@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using StockService.Protos;
+using StockData.Protos;
 using StockWeb.Internal;
 using StockWeb.Models;
 

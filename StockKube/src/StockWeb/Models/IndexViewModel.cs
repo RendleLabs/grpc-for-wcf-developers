@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using StockService.Protos;
+using StockData.Protos;
 
 namespace StockWeb.Models
 {

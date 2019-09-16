@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: stockservice
+  name: stockdata
   namespace: stocks
 spec:
   selector:
     matchLabels:
-      run: stockservice
-  replicas: 1
+      run: stockdata
+  replicas: 2
   template:
     metadata:
       labels:
-        run: stockservice
+        run: stockdata
     spec:
       containers:
-      - name: stockservice
-        image: stockservice:1.0.0
+      - name: stockdata
+        image: stockdata:1.0.0
         imagePullPolicy: Never
         resources:
           limits:
@@ -29,13 +29,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: stockservice
+  name: stockdata
   namespace: stocks
-  labels:
-    run: stockservice
 spec:
-  type: NodePort 
   ports:
   - port: 80
   selector:
-    run: stockservice
+    run: stockdata

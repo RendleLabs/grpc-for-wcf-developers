@@ -2,19 +2,19 @@ using System;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
-using StockService.Data;
-using StockService.Protos;
+using StockData.Data;
+using StockData.Protos;
 
-namespace StockService.Services
+namespace StockData.Services
 {
-    public class StockService : Stocks.StocksBase
+    public class StockData : Stocks.StocksBase
     {
         private static readonly string ServerId = Guid.NewGuid().ToString("D");
         
         private readonly IStockRepository _repository;
-        private readonly ILogger<StockService> _logger;
+        private readonly ILogger<StockData> _logger;
         
-        public StockService(IStockRepository repository, ILogger<StockService> logger)
+        public StockData(IStockRepository repository, ILogger<StockData> logger)
         {
             _repository = repository;
             _logger = logger;

@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9C29E634-9A63-4A94-A2F3-AA9E97A4F386}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockService", "src\StockService\StockService.csproj", "{46F80C8A-0DE5-4425-BDE2-389421D2E238}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockData", "src\StockData\StockData.csproj", "{46F80C8A-0DE5-4425-BDE2-389421D2E238}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockWeb", "src\StockWeb\StockWeb.csproj", "{55B57165-F959-4A40-8E71-12713CCCEB10}"
 EndProject

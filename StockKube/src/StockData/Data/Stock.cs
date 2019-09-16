@@ -1,6 +1,6 @@
 using System.Threading;
 
-namespace StockService.Data
+namespace StockData.Data
 {
     public class Stock
     {
