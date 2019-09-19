@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
@@ -24,6 +26,7 @@ namespace StockData.Services
         {
             if (request.Id < 1)
             {
+                _logger.LogWarning("Invalid Stock ID received: {stockId}", request.Id);
                 throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid argument"), "Id must be greater than 1");
             }
 
