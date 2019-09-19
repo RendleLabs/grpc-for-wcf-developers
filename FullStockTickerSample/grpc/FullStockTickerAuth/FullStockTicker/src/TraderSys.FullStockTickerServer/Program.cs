@@ -22,7 +22,15 @@ namespace TraderSys.FullStockTickerServer
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                        .ConfigureKestrel(options =>
+                        {
+                            options.ConfigureHttpsDefaults(options =>
+                            {
+                                options.ServerCertificate = DevelopmentModeCertificateHelper.Certificate;
+                                options.ClientCertificateMode = ClientCertificateMode.RequireCertificate;
+                            });
+                        });
                 });
     }
 }

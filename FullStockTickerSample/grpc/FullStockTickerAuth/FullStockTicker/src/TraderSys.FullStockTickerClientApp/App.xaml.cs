@@ -25,7 +25,11 @@ namespace TraderSys.FullStockTickerClientApp
 
         private void ConfigureServices(ServiceCollection services)
         {
-            services.AddHttpClient("grpc");
+            var clientCertificate = new X509Certificate2("client.pfx", "secretsquirrel");
+            var handler = new HttpClientHandler();
+            handler.ClientCertificates.Add(clientCertificate);
+
+            services.AddHttpClient("grpc").ConfigurePrimaryHttpMessageHandler(() => handler);
 
             services.AddGrpcClient<FullStockTickerServer.Protos.FullStockTicker.FullStockTickerClient>(options =>
                 {
